@@ -34,11 +34,7 @@ func (c *HealthController) Health(ctx *app.HealthHealthContext) error {
 		fmt.Printf("zapi_url: [%s]\n", element.zapi_url)
 		fmt.Printf("zapi_username: [%s]\n", element.zapi_username)
 		fmt.Printf("zapi_password: [%s]\n", element.zapi_password)
-		version, err := element.zapi_object.Version()
-		if err != nil {
-			goa.ErrBadRequest("Unable to get version information: %s", err)
-		}
-		fmt.Printf("zapi_version: [%s]\n\n", version)
+		fmt.Printf("zapi_version: [%s]\n\n", element.zapi_version)
 	}
 
 	result, err := GetDCStatus(c.zapi_list[ctx.Dc])
