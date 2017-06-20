@@ -1,0 +1,68 @@
+consumes:
+- application/json
+host: localhost:8080
+info:
+  description: This API exposes a REST endpoint to query a Zabbix monitoring server.
+  version: ""
+paths:
+  /api/v1/health/{dc}/{hgroup}/{hostname}:
+    get:
+      description: Get the health from servers monitored by the requested Zabbix API.  If
+        provided, you can narrow the list of servers down by Host Group or hostname
+      operationId: health#health
+      parameters:
+      - description: Data Center
+        in: path
+        name: dc
+        required: true
+        type: string
+      - description: Host Group name
+        in: path
+        name: hgroup
+        required: true
+        type: string
+      - description: Host name
+        in: path
+        name: hostname
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+        "404":
+          description: Not Found
+      schemes:
+      - http
+      summary: health health
+      tags:
+      - health
+  /swagger.json:
+    get:
+      operationId: swagger#/swagger.json
+      responses:
+        "200":
+          description: File downloaded
+          schema:
+            type: file
+      schemes:
+      - http
+      summary: Download swagger/swagger.json
+  /swagger.yaml:
+    get:
+      operationId: swagger#/swagger.yaml
+      responses:
+        "200":
+          description: File downloaded
+          schema:
+            type: file
+      schemes:
+      - http
+      summary: Download swagger/swagger.yaml
+produces:
+- application/json
+responses:
+  NotFound:
+    description: Not Found
+schemes:
+- http
+swagger: "2.0"
